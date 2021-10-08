@@ -1,6 +1,3 @@
-FROM golang:1.17 as builder
-WORKDIR /go/src/github.com/rossedman/leviathan
-COPY . .
-RUN go get -d -v ./...
-RUN go install -v ./...
-ENTRYPOINT ["leviathan"]
+FROM alpine
+COPY leviathan /usr/bin/leviathan
+ENTRYPOINT ["/usr/bin/leviathan"]

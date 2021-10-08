@@ -1,3 +1,5 @@
+# multiplatform docker images info came from here:
+#   https://carlosbecker.com/posts/multi-platform-docker-images-goreleaser-gh-actions/
 builds:
 - env: [CGO_ENABLED=0]
   goos:
