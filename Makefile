@@ -1,4 +1,4 @@
-.PHONY: build
+.PHONY: test
 
-build:
-	docker build -t rossedman/leviathan:latest .
+test:
+	go test -coverprofile=coverage.out -race -v ./...
