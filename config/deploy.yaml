@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leviathan
+  namespace: leviathan
+  labels:
+    app: leviathan
+spec:
+  selector:
+    matchLabels:
+      app: leviathan
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: leviathan
+    spec:
+      containers:
+      - name: leviathan
+        image: ghcr.io/rossedman/leviathan:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: LEVIATHAN_PORT
+          value: "8080"
+        ports:
+        - containerPort: 8080
+          name: leviathan
